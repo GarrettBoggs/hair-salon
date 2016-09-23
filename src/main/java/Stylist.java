@@ -36,8 +36,8 @@ public class Stylist {
      try(Connection con = DB.sql2o.open()) {
        String sql = "SELECT * FROM stylists where id=:id";
        Stylist stylist = con.createQuery(sql)
-         .addParameter("id", id)
-         .executeAndFetchFirst(Stylist.class);
+       .addParameter("id", id)
+       .executeAndFetchFirst(Stylist.class);
        return stylist;
      }
    }
@@ -46,8 +46,8 @@ public class Stylist {
    try(Connection con = DB.sql2o.open()) {
      String sql = "SELECT * FROM clients where stylistid=:id";
      return con.createQuery(sql)
-       .addParameter("id", this.id)
-       .executeAndFetch(Client.class);
+     .addParameter("id", this.id)
+     .executeAndFetch(Client.class);
    }
   }
 
@@ -55,7 +55,8 @@ public class Stylist {
   public boolean equals(Object otherStylist) {
    if (!(otherStylist instanceof Stylist)) {
      return false;
-   } else {
+   }
+   else {
      Stylist newStylist = (Stylist) otherStylist;
      return this.getName().equals(newStylist.getName()) &&
             this.getId() == newStylist.getId();
@@ -64,8 +65,8 @@ public class Stylist {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO stylists(name, details) VALUES (:name, :details)";
-      this.id = (int) con.createQuery(sql, true)
+        String sql = "INSERT INTO stylists(name, details) VALUES (:name, :details)";
+        this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
         .addParameter("details", this.details)
         .executeUpdate()
@@ -75,8 +76,8 @@ public class Stylist {
 
   public void update(String details) {
     try(Connection con = DB.sql2o.open()) {
-    String sql = "UPDATE stylists SET details = :details WHERE id = :id";
-    con.createQuery(sql)
+      String sql = "UPDATE stylists SET details = :details WHERE id = :id";
+      con.createQuery(sql)
       .addParameter("details", details)
       .addParameter("id", id)
       .executeUpdate();
@@ -85,11 +86,22 @@ public class Stylist {
 
   public void delete() {
     try(Connection con = DB.sql2o.open()) {
-    String sql = "DELETE FROM stylists WHERE id = :id;";
-    con.createQuery(sql)
+      String sql = "DELETE FROM stylists WHERE id = :id;";
+      con.createQuery(sql)
       .addParameter("id", id)
       .executeUpdate();
     }
+  }
+
+  public static List<Stylist> findStylist(String name) {
+   try(Connection con = DB.sql2o.open()) {
+     String sql = "SELECT * FROM stylists WHERE lower(name) LIKE :name";
+     name = "%" + name + "%";
+     name = name.toLowerCase();
+     return con.createQuery(sql)
+     .addParameter("name", name)
+     .executeAndFetch(Stylist.class);
+   }
   }
 
 }

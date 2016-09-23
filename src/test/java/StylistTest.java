@@ -1,7 +1,8 @@
 import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
-import java.util.Arrays;
+import java.util.*;
+
 
 public class StylistTest {
 
@@ -95,5 +96,14 @@ public class StylistTest {
     int myStylistId = myStylist.getId();
     myStylist.delete();
     assertEquals(null, Stylist.find(myStylistId));
+  }
+
+  @Test
+  public void find_findStylist_true() {
+    Stylist myStylist = new Stylist("Ted");
+    myStylist.save();
+    Stylist otherStylist = new Stylist("Jeff");
+    otherStylist.save();
+    assertEquals(true, myStylist.findStylist("Jeff").get(0).equals(otherStylist));
   }
 }
