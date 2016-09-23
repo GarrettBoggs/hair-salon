@@ -21,15 +21,15 @@ public class Stylist {
     return details;
   }
 
+  public int getId() {
+    return id;
+  }
+
   public static List<Stylist> all() {
     String sql = "SELECT id, name, details FROM stylists";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Stylist.class);
     }
-  }
-
-  public int getId() {
-    return id;
   }
 
   public static Stylist find(int id) {
@@ -39,8 +39,8 @@ public class Stylist {
        .addParameter("id", id)
        .executeAndFetchFirst(Stylist.class);
        return stylist;
-     }
-   }
+    }
+  }
 
   public List<Client> getClients() {
    try(Connection con = DB.sql2o.open()) {
@@ -48,7 +48,7 @@ public class Stylist {
      return con.createQuery(sql)
      .addParameter("id", this.id)
      .executeAndFetch(Client.class);
-   }
+    }
   }
 
   @Override
@@ -60,17 +60,17 @@ public class Stylist {
      Stylist newStylist = (Stylist) otherStylist;
      return this.getName().equals(newStylist.getName()) &&
             this.getId() == newStylist.getId();
-   }
+    }
   }
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-        String sql = "INSERT INTO stylists(name, details) VALUES (:name, :details)";
-        this.id = (int) con.createQuery(sql, true)
-        .addParameter("name", this.name)
-        .addParameter("details", this.details)
-        .executeUpdate()
-        .getKey();
+      String sql = "INSERT INTO stylists(name, details) VALUES (:name, :details)";
+      this.id = (int) con.createQuery(sql, true)
+      .addParameter("name", this.name)
+      .addParameter("details", this.details)
+      .executeUpdate()
+      .getKey();
     }
   }
 
@@ -101,7 +101,7 @@ public class Stylist {
      return con.createQuery(sql)
      .addParameter("name", name)
      .executeAndFetch(Stylist.class);
-   }
+    }
   }
 
 }
