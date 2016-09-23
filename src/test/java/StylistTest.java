@@ -31,7 +31,7 @@ public class StylistTest {
  }
 
  @Test
- public void getId_categoriesInstantiateWithAnId_1() {
+ public void getId_stylistsInstantiateWithAnId_1() {
    Stylist testStylist = new Stylist("Zelda");
    testStylist.save();
    assertTrue(testStylist.getId() > 0);
@@ -78,5 +78,22 @@ public class StylistTest {
     secondClient.save();
     Client[] clients = new Client[] { firstClient, secondClient };
     assertTrue(myStylist.getClients().containsAll(Arrays.asList(clients)));
+  }
+
+  @Test
+  public void update_updatesStylistName_true() {
+    Stylist myStylist = new Stylist("Ted");
+    myStylist.save();
+    myStylist.update("Steve");
+    assertEquals("Steve", Stylist.find(myStylist.getId()).getName());
+  }
+
+  @Test
+  public void delete_deletesStylist_true() {
+    Stylist myStylist = new Stylist("Ted");
+    myStylist.save();
+    int myStylistId = myStylist.getId();
+    myStylist.delete();
+    assertEquals(null, Stylist.find(myStylistId));
   }
 }

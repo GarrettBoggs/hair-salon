@@ -64,6 +64,16 @@ public class App {
      return new ModelAndView(model, layout);
    }, new VelocityTemplateEngine());
 
+   post("/stylists/:id", (request, response) -> {
+     Map<String, Object> model = new HashMap<String, Object>();
+     Stylist stylist = Stylist.find(Integer.parseInt(request.params("id")));
+     String description = request.queryParams("description");
+     stylist.update(description);
+     String url = String.format("/stylists/%d", stylist.getId());
+     response.redirect(url);
+     return new ModelAndView(model, layout);
+   }, new VelocityTemplateEngine());
+
    post("/clients", (request, response) -> {
      Map<String, Object> model = new HashMap<String, Object>();
      Stylist stylist = Stylist.find(Integer.parseInt(request.queryParams("stylistId")));
