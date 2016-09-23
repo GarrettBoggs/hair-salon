@@ -6,17 +6,23 @@ public class Stylist {
 
   private String name;
   private int id;
+  private String details;
 
   public Stylist(String name) {
     this.name = name;
+    details = "none entered";
   }
 
   public String getName() {
     return name;
   }
 
+  public String getDetails() {
+    return details;
+  }
+
   public static List<Stylist> all() {
-    String sql = "SELECT id, name FROM stylists";
+    String sql = "SELECT id, name, details FROM stylists";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Stylist.class);
     }
@@ -58,19 +64,20 @@ public class Stylist {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO stylists(name) VALUES (:name)";
+      String sql = "INSERT INTO stylists(name, details) VALUES (:name, :details)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
+        .addParameter("details", this.details)
         .executeUpdate()
         .getKey();
     }
   }
 
-  public void update(String name) {
+  public void update(String details) {
     try(Connection con = DB.sql2o.open()) {
-    String sql = "UPDATE stylists SET name = :name WHERE id = :id";
+    String sql = "UPDATE stylists SET details = :details WHERE id = :id";
     con.createQuery(sql)
-      .addParameter("name", name)
+      .addParameter("details", details)
       .addParameter("id", id)
       .executeUpdate();
     }

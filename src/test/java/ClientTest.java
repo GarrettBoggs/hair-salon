@@ -87,8 +87,8 @@ public class ClientTest {
  public void update_updatesClientName_true() {
    Client myClient = new Client("Ted", 1);
    myClient.save();
-   myClient.update("Steve");
-   assertEquals("Steve", Client.find(myClient.getId()).getName());
+   myClient.update("Regular customer");
+   assertEquals("Regular customer", Client.find(myClient.getId()).getDetails());
  }
 
  @Test

@@ -8,10 +8,12 @@ public class Client {
   private String name;
   private int id;
   private int stylistId;
+  private String details;
 
   public Client(String name, int stylistId) {
     this.name = name;
     this.stylistId = stylistId;
+    this.details =  "none entered";
   }
 
   public String getName() {
@@ -26,8 +28,12 @@ public class Client {
     return id;
   }
 
+  public String getDetails() {
+    return details;
+  }
+
   public static List<Client> all() {
-    String sql = "SELECT id, name, stylistid FROM clients";
+    String sql = "SELECT id, name, stylistid, details FROM clients";
     try(Connection con = DB.sql2o.open()) {
      return con.createQuery(sql).executeAndFetch(Client.class);
     }
@@ -47,10 +53,11 @@ public class Client {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO clients(name, stylistid) VALUES (:name, :stylistid)";
+      String sql = "INSERT INTO clients(name, stylistid, details) VALUES (:name, :stylistid, :details)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
         .addParameter("stylistid", this.stylistId)
+        .addParameter("details", this.details)
         .executeUpdate()
         .getKey();
     }
@@ -66,11 +73,11 @@ public class Client {
     }
   }
 
-  public void update(String name) {
+  public void update(String details) {
     try(Connection con = DB.sql2o.open()) {
-    String sql = "UPDATE clients SET name = :name WHERE id = :id";
+    String sql = "UPDATE clients SET details = :details WHERE id = :id";
     con.createQuery(sql)
-      .addParameter("name", name)
+      .addParameter("details", details)
       .addParameter("id", id)
       .executeUpdate();
     }

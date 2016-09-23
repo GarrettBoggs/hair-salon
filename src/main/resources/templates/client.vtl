@@ -2,12 +2,12 @@
 
 <h2> Belongs to: $stylist.getName()</h2>
 
-<h2>Update Name:</h2>
+<h2> Current Details: $client.getDetails() </h2>
 
 <form action="/stylists/$client.getStylistId()/clients/$client.getId()" method="post">
   <label for="description">Description</label>
   <input id="description" name="description" type="text">
-  <button type="submit" class="btn btn-info">Update Client</button>
+  <button type="submit" class="btn btn-info">Update Details</button>
 </form>
 
 <form action="/stylists/$client.getStylistId()/clients/$client.getId()/delete" method="post">

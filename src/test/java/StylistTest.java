@@ -81,11 +81,11 @@ public class StylistTest {
   }
 
   @Test
-  public void update_updatesStylistName_true() {
+  public void update_updatesStylistDetails_true() {
     Stylist myStylist = new Stylist("Ted");
     myStylist.save();
-    myStylist.update("Steve");
-    assertEquals("Steve", Stylist.find(myStylist.getId()).getName());
+    myStylist.update("Worked here 5 years");
+    assertEquals("Worked here 5 years", Stylist.find(myStylist.getId()).getDetails());
   }
 
   @Test
