@@ -61,13 +61,20 @@ https://github.com/GarrettBoggs/hair-salon
   * Example input: Enter details: "Regular customer"
   * Example output: Client: Jeff Details: "Regular customer"
 
-
   **User details can be updated**
   * Example input: New Stylist: "Zelda"
   * Example output: Stylist: Zelda
 
   * Example input: Enter details: "Specialty Haircut: Mohawk"
   * Example output: Stylist: Zelda Details: "Specialty Haircut: Mohawk"
+
+  **User can search for Stylists**
+  * Example input: New Stylist: "Zelda"
+  * Example output: Stylist: Zelda
+
+  * Example input: Search: "ze"
+  * Example output: Stylist: Zelda
+
 
 
 
