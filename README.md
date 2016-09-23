@@ -8,11 +8,11 @@ _A Hair-salon program created with spark framework, java, and sql databases_
 
 ## Setup/Installation Requirements
 
-In PSQL:
-CREATE DATABASE hair_salon;
-CREATE TABLE stylists (id serial PRIMARY KEY, name varchar, details varchar);
-CREATE TABLE clients (id serial PRIMARY KEY, name varchar, stylistid int, details varchar);
-CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon;
+* In PSQL:
+* CREATE DATABASE hair_salon;
+* CREATE TABLE stylists (id serial PRIMARY KEY, name varchar, details varchar);
+* CREATE TABLE clients (id serial PRIMARY KEY, name varchar, stylistid int, details * varchar);
+* CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon;
 
 * _Copy the repository from GitHub_
 * _Open in code editor of your choice_

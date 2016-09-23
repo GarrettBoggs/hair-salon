@@ -1,9 +1,9 @@
 <h1>Hair Salon</h1>
 
-<h2> All Lists: </h2>
+<h2> All Stylists: </h2>
 
 #if($stylists)
-  <p>Click on a stylist to see its clients:</p>
+  <p>Click on a stylist to see clients:</p>
   <ul>
     #foreach ($stylist in $stylists)
       <li><a href="/stylists/$stylist.getId()">$stylist.getName()</a></li>
@@ -31,7 +31,7 @@
   #end
   </select>
   <div class="form-group">
-    <label for="description">Description</label>
+    <label for="description">Name of New Client</label>
     <input id="description" name="description" type="text" class="form-control">
   </div>
 

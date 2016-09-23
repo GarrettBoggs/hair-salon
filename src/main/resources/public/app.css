@@ -1,0 +1,22 @@
+p{
+  font-size: 25px;
+}
+
+li{
+  font-size: 25px;
+}
+
+.container{
+  background: lightgray;
+  font-size: 25px;
+}
+
+html{
+  background-color: gray;
+  margin-top: 300px;
+}
+
+
+#delete{
+  margin-top: 100px;
+}
