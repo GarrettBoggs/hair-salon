@@ -73,7 +73,7 @@ public class ClientTest {
    assertEquals(myClient.getId(), savedClient.getId());
  }
 
-/* @Test
+@Test
  public void save_savesStylistIdIntoDB_true() {
    Stylist myStylist = new Stylist("Jim");
    myStylist.save();
@@ -81,7 +81,7 @@ public class ClientTest {
    myClient.save();
    Client savedClient = Client.find(myClient.getId());
    assertEquals(savedClient.getStylistId(), myStylist.getId());
- } */
+ }
 
  @Test
  public void update_updatesClientName_true() {
